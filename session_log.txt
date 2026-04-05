@@ -1,0 +1,297 @@
+[01:07:18] [INFO ] System started — worker pool online
+[01:07:18] [INFO ] Task #1 submitted  priority=2  timeout=9655ms
+[01:07:18] [INFO ] Task #2 submitted  priority=4  timeout=11705ms
+[01:07:18] [INFO ] Task #3 submitted  priority=10  timeout=9297ms
+[01:07:18] [INFO ] Task #4 submitted  priority=8  timeout=9809ms
+[01:07:18] [INFO ] Task #5 submitted  priority=9  timeout=6628ms
+[01:07:19] [INFO ] Task #6 submitted  priority=8  timeout=8163ms
+[01:07:19] [INFO ] Task #7 submitted  priority=2  timeout=7443ms
+[01:07:19] [INFO ] Task #8 submitted  priority=8  timeout=9592ms
+[01:07:19] [INFO ] Task #9 submitted  priority=3  timeout=6463ms
+[01:07:19] [INFO ] Task #10 submitted  priority=3  timeout=10549ms
+[01:07:19] [INFO ] Task #11 submitted  priority=4  timeout=9656ms
+[01:07:19] [INFO ] Task #12 submitted  priority=4  timeout=11155ms
+[01:07:19] [INFO ] Task #13 submitted  priority=2  timeout=6936ms
+[01:07:19] [INFO ] METRICS | Queued=10 Running=3 Done=0 Timeout=0 Workers=3 Thruput=0.0/s AvgLat=0.0ms
+[01:07:19] [INFO ] Task #14 submitted  priority=4  timeout=11624ms
+[01:07:19] [INFO ] Task #15 submitted  priority=7  timeout=9247ms
+[01:07:19] [INFO ] Task #16 submitted  priority=4  timeout=8454ms
+[01:07:20] [INFO ] Task #17 submitted  priority=1  timeout=11197ms
+[01:07:20] [INFO ] Task #18 submitted  priority=5  timeout=8837ms
+[01:07:20] [INFO ] Task #19 submitted  priority=6  timeout=10261ms
+[01:07:20] [INFO ] Task #20 submitted  priority=1  timeout=10403ms
+[01:07:20] [INFO ] Task #21 submitted  priority=1  timeout=8645ms
+[01:07:20] [INFO ] Task #22 submitted  priority=7  timeout=10249ms
+[01:07:20] [INFO ] Task #23 submitted  priority=1  timeout=6980ms
+[01:07:20] [INFO ] METRICS | Queued=16 Running=7 Done=0 Timeout=0 Workers=7 Thruput=0.0/s AvgLat=0.0ms
+[01:07:20] [INFO ] Task #24 submitted  priority=10  timeout=8740ms
+[01:07:20] [INFO ] Task #25 submitted  priority=4  timeout=10813ms
+[01:07:20] [INFO ] Task #26 submitted  priority=10  timeout=8730ms
+[01:07:21] [INFO ] Task #27 submitted  priority=3  timeout=6341ms
+[01:07:21] [INFO ] Task #28 submitted  priority=2  timeout=9764ms
+[01:07:21] [INFO ] Task #29 submitted  priority=1  timeout=11820ms
+[01:07:21] [INFO ] Task #30 submitted  priority=6  timeout=6509ms
+[01:07:21] [INFO ] Task #31 submitted  priority=5  timeout=6680ms
+[01:07:21] [INFO ] Task #32 submitted  priority=9  timeout=9901ms
+[01:07:21] [INFO ] METRICS | Queued=18 Running=13 Done=1 Timeout=0 Workers=13 Thruput=1.0/s AvgLat=2589.0ms
+[01:07:21] [INFO ] Task #33 submitted  priority=3  timeout=11745ms
+[01:07:21] [INFO ] Task #34 submitted  priority=9  timeout=7274ms
+[01:07:21] [INFO ] Task #35 submitted  priority=9  timeout=7326ms
+[01:07:22] [INFO ] Task #36 submitted  priority=5  timeout=10475ms
+[01:07:22] [INFO ] Task #37 submitted  priority=2  timeout=7100ms
+[01:07:22] [INFO ] Task #38 submitted  priority=10  timeout=8822ms
+[01:07:22] [INFO ] Task #39 submitted  priority=9  timeout=7942ms
+[01:07:22] [INFO ] Task #40 submitted  priority=10  timeout=11291ms
+[01:07:22] [INFO ] Task #41 submitted  priority=5  timeout=7896ms
+[01:07:22] [INFO ] METRICS | Queued=22 Running=16 Done=4 Timeout=0 Workers=16 Thruput=3.0/s AvgLat=3084.0ms
+[01:07:22] [INFO ] Task #42 submitted  priority=4  timeout=9149ms
+[01:07:22] [INFO ] Task #43 submitted  priority=1  timeout=11060ms
+[01:07:23] [INFO ] Task #44 submitted  priority=7  timeout=7696ms
+[01:07:23] [INFO ] Task #45 submitted  priority=7  timeout=7283ms
+[01:07:23] [INFO ] Task #46 submitted  priority=5  timeout=7747ms
+[01:07:23] [INFO ] Task #47 submitted  priority=2  timeout=10813ms
+[01:07:23] [INFO ] Task #48 submitted  priority=10  timeout=10039ms
+[01:07:23] [INFO ] Task #49 submitted  priority=9  timeout=11829ms
+[01:07:23] [INFO ] Task #50 submitted  priority=7  timeout=6835ms
+[01:07:23] [INFO ] Task #51 submitted  priority=7  timeout=6837ms
+[01:07:23] [INFO ] METRICS | Queued=27 Running=16 Done=8 Timeout=0 Workers=16 Thruput=4.0/s AvgLat=3477.4ms
+[01:07:23] [INFO ] Task #52 submitted  priority=4  timeout=9767ms
+[01:07:24] [INFO ] Task #53 submitted  priority=3  timeout=8198ms
+[01:07:24] [INFO ] Task #54 submitted  priority=5  timeout=7738ms
+[01:07:24] [INFO ] Task #55 submitted  priority=4  timeout=11727ms
+[01:07:24] [INFO ] Task #56 submitted  priority=5  timeout=11244ms
+[01:07:24] [INFO ] Task #57 submitted  priority=1  timeout=7799ms
+[01:07:24] [INFO ] Task #58 submitted  priority=5  timeout=10711ms
+[01:07:24] [INFO ] Task #59 submitted  priority=5  timeout=10019ms
+[01:07:24] [INFO ] METRICS | Queued=33 Running=16 Done=10 Timeout=0 Workers=16 Thruput=2.0/s AvgLat=3628.7ms
+[01:07:24] [INFO ] Task #60 submitted  priority=6  timeout=6674ms
+[01:07:24] [INFO ] Task #61 submitted  priority=3  timeout=9989ms
+[01:07:24] [INFO ] Task #62 submitted  priority=1  timeout=8233ms
+[01:07:25] [INFO ] Task #63 submitted  priority=2  timeout=9085ms
+[01:07:25] [INFO ] Task #64 submitted  priority=1  timeout=11383ms
+[01:07:25] [INFO ] Task #65 submitted  priority=3  timeout=11944ms
+[01:07:25] [INFO ] Task #66 submitted  priority=9  timeout=6893ms
+[01:07:25] [INFO ] Task #67 submitted  priority=3  timeout=7574ms
+[01:07:25] [INFO ] Task #68 submitted  priority=3  timeout=8871ms
+[01:07:25] [INFO ] METRICS | Queued=41 Running=16 Done=11 Timeout=0 Workers=16 Thruput=1.0/s AvgLat=3680.3ms
+[01:07:25] [INFO ] Task #69 submitted  priority=6  timeout=6278ms
+[01:07:25] [INFO ] Task #70 submitted  priority=3  timeout=8328ms
+[01:07:25] [INFO ] Task #71 submitted  priority=1  timeout=9259ms
+[01:07:26] [INFO ] Task #72 submitted  priority=4  timeout=7845ms
+[01:07:26] [INFO ] Task #73 submitted  priority=9  timeout=6447ms
+[01:07:26] [INFO ] Task #74 submitted  priority=6  timeout=6955ms
+[01:07:26] [INFO ] Task #75 submitted  priority=3  timeout=8964ms
+[01:07:26] [INFO ] Task #76 submitted  priority=5  timeout=9818ms
+[01:07:26] [INFO ] Task #77 submitted  priority=7  timeout=7023ms
+[01:07:26] [INFO ] METRICS | Queued=47 Running=16 Done=15 Timeout=0 Workers=16 Thruput=4.0/s AvgLat=4107.8ms
+[01:07:26] [INFO ] Task #78 submitted  priority=1  timeout=7738ms
+[01:07:26] [INFO ] Task #79 submitted  priority=10  timeout=11452ms
+[01:07:26] [INFO ] Task #80 submitted  priority=10  timeout=7349ms
+[01:07:27] [INFO ] Task #81 submitted  priority=2  timeout=6624ms
+[01:07:27] [INFO ] Task #82 submitted  priority=1  timeout=11694ms
+[01:07:27] [INFO ] Task #83 submitted  priority=8  timeout=6663ms
+[01:07:27] [INFO ] Task #84 submitted  priority=3  timeout=11781ms
+[01:07:27] [INFO ] Task #85 submitted  priority=3  timeout=8731ms
+[01:07:27] [INFO ] Task #86 submitted  priority=10  timeout=9152ms
+[01:07:27] [INFO ] METRICS | Queued=53 Running=16 Done=17 Timeout=0 Workers=16 Thruput=2.0/s AvgLat=4371.5ms
+[01:07:27] [INFO ] Task #87 submitted  priority=7  timeout=8441ms
+[01:07:27] [INFO ] Task #88 submitted  priority=7  timeout=11176ms
+[01:07:27] [INFO ] Task #89 submitted  priority=10  timeout=10851ms
+[01:07:27] [INFO ] Task #90 submitted  priority=8  timeout=11945ms
+[01:07:28] [INFO ] Task #91 submitted  priority=9  timeout=7500ms
+[01:07:28] [INFO ] Task #92 submitted  priority=9  timeout=8264ms
+[01:07:28] [INFO ] Task #93 submitted  priority=2  timeout=7085ms
+[01:07:28] [INFO ] Task #94 submitted  priority=4  timeout=6586ms
+[01:07:28] [INFO ] Task #95 submitted  priority=1  timeout=6894ms
+[01:07:28] [INFO ] METRICS | Queued=62 Running=16 Done=19 Timeout=0 Workers=16 Thruput=2.0/s AvgLat=4527.1ms
+[01:07:28] [INFO ] Task #96 submitted  priority=6  timeout=6353ms
+[01:07:28] [INFO ] Task #97 submitted  priority=7  timeout=8641ms
+[01:07:29] [INFO ] Task #98 submitted  priority=5  timeout=9345ms
+[01:07:29] [INFO ] Task #99 submitted  priority=10  timeout=8472ms
+[01:07:29] [INFO ] Task #100 submitted  priority=7  timeout=11874ms
+[01:07:29] [INFO ] Task #101 submitted  priority=8  timeout=6435ms
+[01:07:29] [INFO ] Task #102 submitted  priority=2  timeout=8971ms
+[01:07:29] [INFO ] Task #103 submitted  priority=9  timeout=10033ms
+[01:07:29] [INFO ] Task #104 submitted  priority=3  timeout=6661ms
+[01:07:29] [INFO ] METRICS | Queued=66 Running=16 Done=21 Timeout=1 Workers=16 Thruput=2.0/s AvgLat=4764.1ms
+[01:07:29] [INFO ] Task #105 submitted  priority=1  timeout=11447ms
+[01:07:30] [INFO ] Task #106 submitted  priority=9  timeout=10357ms
+[01:07:30] [INFO ] Task #107 submitted  priority=7  timeout=7653ms
+[01:07:30] [INFO ] Task #108 submitted  priority=1  timeout=11456ms
+[01:07:30] [INFO ] Task #109 submitted  priority=8  timeout=7860ms
+[01:07:30] [INFO ] Task #110 submitted  priority=1  timeout=10534ms
+[01:07:30] [INFO ] Task #111 submitted  priority=3  timeout=9975ms
+[01:07:30] [INFO ] METRICS | Queued=72 Running=16 Done=22 Timeout=1 Workers=16 Thruput=1.0/s AvgLat=4847.5ms
+[01:07:30] [INFO ] Task #112 submitted  priority=9  timeout=10262ms
+[01:07:30] [INFO ] Task #113 submitted  priority=9  timeout=7241ms
+[01:07:30] [INFO ] Task #114 submitted  priority=9  timeout=8710ms
+[01:07:31] [INFO ] Task #115 submitted  priority=1  timeout=7534ms
+[01:07:31] [INFO ] Task #116 submitted  priority=1  timeout=11324ms
+[01:07:31] [INFO ] Task #117 submitted  priority=4  timeout=9120ms
+[01:07:31] [INFO ] Task #118 submitted  priority=7  timeout=11581ms
+[01:07:31] [INFO ] Task #119 submitted  priority=5  timeout=11962ms
+[01:07:31] [INFO ] Task #120 submitted  priority=2  timeout=7170ms
+[01:07:31] [INFO ] METRICS | Queued=78 Running=16 Done=24 Timeout=3 Workers=16 Thruput=2.0/s AvgLat=5014.4ms
+[01:07:31] [INFO ] Task #121 submitted  priority=6  timeout=7109ms
+[01:07:31] [INFO ] Task #122 submitted  priority=9  timeout=6569ms
+[01:07:32] [INFO ] Task #123 submitted  priority=8  timeout=6731ms
+[01:07:32] [INFO ] Task #124 submitted  priority=10  timeout=10651ms
+[01:07:32] [INFO ] Task #125 submitted  priority=2  timeout=9125ms
+[01:07:32] [INFO ] Task #126 submitted  priority=8  timeout=8670ms
+[01:07:32] [INFO ] Task #127 submitted  priority=5  timeout=8956ms
+[01:07:32] [INFO ] Task #128 submitted  priority=10  timeout=11369ms
+[01:07:32] [INFO ] METRICS | Queued=83 Running=16 Done=26 Timeout=3 Workers=16 Thruput=2.0/s AvgLat=5299.6ms
+[01:07:32] [INFO ] Task #129 submitted  priority=6  timeout=8467ms
+[01:07:32] [INFO ] Task #130 submitted  priority=9  timeout=6401ms
+[01:07:32] [INFO ] Task #131 submitted  priority=1  timeout=10744ms
+[01:07:33] [INFO ] Task #132 submitted  priority=2  timeout=6922ms
+[01:07:33] [INFO ] Task #133 submitted  priority=8  timeout=8395ms
+[01:07:33] [INFO ] Task #134 submitted  priority=6  timeout=11532ms
+[01:07:33] [INFO ] Task #135 submitted  priority=2  timeout=7033ms
+[01:07:33] [INFO ] Task #136 submitted  priority=10  timeout=7629ms
+[01:07:33] [INFO ] Task #137 submitted  priority=2  timeout=6642ms
+[01:07:33] [INFO ] Task #138 submitted  priority=7  timeout=10228ms
+[01:07:33] [INFO ] METRICS | Queued=93 Running=16 Done=26 Timeout=3 Workers=16 Thruput=0.0/s AvgLat=5299.6ms
+[01:07:33] [INFO ] Task #139 submitted  priority=10  timeout=9998ms
+[01:07:33] [INFO ] Task #140 submitted  priority=1  timeout=7176ms
+[01:07:34] [INFO ] Task #141 submitted  priority=9  timeout=6985ms
+[01:07:34] [INFO ] Task #142 submitted  priority=5  timeout=7314ms
+[01:07:34] [INFO ] Task #143 submitted  priority=3  timeout=7508ms
+[01:07:34] [INFO ] Task #144 submitted  priority=7  timeout=9240ms
+[01:07:34] [INFO ] Task #145 submitted  priority=1  timeout=7952ms
+[01:07:34] [INFO ] Task #146 submitted  priority=9  timeout=6035ms
+[01:07:34] [INFO ] METRICS | Queued=97 Running=16 Done=28 Timeout=6 Workers=16 Thruput=2.0/s AvgLat=5370.7ms
+[01:07:34] [INFO ] Task #147 submitted  priority=10  timeout=10073ms
+[01:07:34] [INFO ] Task #148 submitted  priority=2  timeout=7904ms
+[01:07:35] [INFO ] Task #149 submitted  priority=3  timeout=7195ms
+[01:07:35] [INFO ] Task #150 submitted  priority=4  timeout=7628ms
+[01:07:35] [INFO ] Task #151 submitted  priority=2  timeout=10190ms
+[01:07:35] [INFO ] Task #152 submitted  priority=5  timeout=6385ms
+[01:07:35] [INFO ] Task #153 submitted  priority=4  timeout=8532ms
+[01:07:35] [INFO ] Task #154 submitted  priority=9  timeout=8140ms
+[01:07:35] [INFO ] METRICS | Queued=102 Running=16 Done=30 Timeout=6 Workers=16 Thruput=2.0/s AvgLat=5546.1ms
+[01:07:35] [INFO ] Task #155 submitted  priority=8  timeout=7742ms
+[01:07:35] [INFO ] Task #156 submitted  priority=2  timeout=11225ms
+[01:07:36] [INFO ] Task #157 submitted  priority=4  timeout=9409ms
+[01:07:36] [INFO ] Task #158 submitted  priority=5  timeout=7242ms
+[01:07:36] [INFO ] Task #159 submitted  priority=6  timeout=8549ms
+[01:07:36] [INFO ] Task #160 submitted  priority=7  timeout=7798ms
+[01:07:36] [INFO ] Task #161 submitted  priority=3  timeout=9256ms
+[01:07:36] [INFO ] Task #162 submitted  priority=1  timeout=8966ms
+[01:07:36] [INFO ] METRICS | Queued=108 Running=16 Done=32 Timeout=6 Workers=16 Thruput=2.0/s AvgLat=5679.8ms
+[01:07:36] [INFO ] Task #163 submitted  priority=1  timeout=10788ms
+[01:07:36] [INFO ] Task #164 submitted  priority=4  timeout=9897ms
+[01:07:37] [INFO ] Task #165 submitted  priority=2  timeout=10813ms
+[01:07:37] [INFO ] Task #166 submitted  priority=3  timeout=11469ms
+[01:07:37] [INFO ] Task #167 submitted  priority=2  timeout=8424ms
+[01:07:37] [INFO ] Task #168 submitted  priority=10  timeout=8075ms
+[01:07:37] [INFO ] Task #169 submitted  priority=1  timeout=11922ms
+[01:07:37] [INFO ] Task #170 submitted  priority=4  timeout=7460ms
+[01:07:37] [INFO ] Task #171 submitted  priority=8  timeout=8810ms
+[01:07:37] [INFO ] METRICS | Queued=115 Running=16 Done=33 Timeout=7 Workers=16 Thruput=1.0/s AvgLat=5697.1ms
+[01:07:37] [INFO ] Task #172 submitted  priority=5  timeout=10974ms
+[01:07:37] [INFO ] Task #173 submitted  priority=10  timeout=6095ms
+[01:07:37] [INFO ] Task #174 submitted  priority=8  timeout=7192ms
+[01:07:38] [INFO ] Task #175 submitted  priority=6  timeout=7472ms
+[01:07:38] [INFO ] Task #176 submitted  priority=8  timeout=8919ms
+[01:07:38] [INFO ] Task #177 submitted  priority=2  timeout=7778ms
+[01:07:38] [INFO ] Task #178 submitted  priority=1  timeout=10893ms
+[01:07:38] [INFO ] Task #179 submitted  priority=9  timeout=10054ms
+[01:07:38] [INFO ] METRICS | Queued=119 Running=16 Done=37 Timeout=7 Workers=16 Thruput=4.0/s AvgLat=5969.0ms
+[01:07:38] [INFO ] Task #180 submitted  priority=8  timeout=10374ms
+[01:07:38] [INFO ] Task #181 submitted  priority=3  timeout=10032ms
+[01:07:39] [INFO ] Task #182 submitted  priority=2  timeout=6568ms
+[01:07:39] [INFO ] Task #183 submitted  priority=8  timeout=10321ms
+[01:07:39] [INFO ] Task #184 submitted  priority=1  timeout=7853ms
+[01:07:39] [INFO ] Task #185 submitted  priority=5  timeout=11945ms
+[01:07:39] [INFO ] Task #186 submitted  priority=8  timeout=6444ms
+[01:07:39] [INFO ] Task #187 submitted  priority=6  timeout=9565ms
+[01:07:39] [INFO ] Task #188 submitted  priority=6  timeout=8690ms
+[01:07:39] [INFO ] METRICS | Queued=127 Running=16 Done=38 Timeout=7 Workers=16 Thruput=1.0/s AvgLat=5991.6ms
+[01:07:39] [INFO ] Task #189 submitted  priority=7  timeout=6616ms
+[01:07:40] [INFO ] Task #190 submitted  priority=9  timeout=6967ms
+[01:07:40] [INFO ] Task #191 submitted  priority=6  timeout=7866ms
+[01:07:40] [INFO ] Task #192 submitted  priority=4  timeout=6695ms
+[01:07:40] [INFO ] Task #193 submitted  priority=10  timeout=9020ms
+[01:07:40] [INFO ] Task #194 submitted  priority=7  timeout=9795ms
+[01:07:40] [INFO ] Task #195 submitted  priority=4  timeout=9629ms
+[01:07:40] [INFO ] METRICS | Queued=129 Running=16 Done=43 Timeout=7 Workers=16 Thruput=5.0/s AvgLat=6094.0ms
+[01:07:40] [INFO ] Task #196 submitted  priority=7  timeout=6545ms
+[01:07:41] [INFO ] Task #197 submitted  priority=10  timeout=10423ms
+[01:07:41] [INFO ] Task #198 submitted  priority=9  timeout=7191ms
+[01:07:41] [INFO ] Task #199 submitted  priority=10  timeout=10399ms
+[01:07:41] [INFO ] METRICS | Queued=131 Running=16 Done=45 Timeout=7 Workers=16 Thruput=2.0/s AvgLat=6160.2ms
+[01:07:42] [INFO ] Task #200 submitted  priority=1  timeout=6959ms
+[01:07:42] [INFO ] METRICS | Queued=132 Running=16 Done=46 Timeout=7 Workers=16 Thruput=1.0/s AvgLat=6128.6ms
+[01:07:43] [INFO ] METRICS | Queued=131 Running=16 Done=47 Timeout=7 Workers=16 Thruput=1.0/s AvgLat=6163.6ms
+[01:07:44] [INFO ] METRICS | Queued=128 Running=16 Done=51 Timeout=8 Workers=16 Thruput=4.0/s AvgLat=6458.7ms
+[01:07:45] [INFO ] METRICS | Queued=124 Running=16 Done=52 Timeout=8 Workers=16 Thruput=1.0/s AvgLat=6660.3ms
+[01:07:46] [INFO ] METRICS | Queued=123 Running=16 Done=55 Timeout=8 Workers=16 Thruput=3.0/s AvgLat=6734.2ms
+[01:07:47] [INFO ] METRICS | Queued=121 Running=16 Done=55 Timeout=8 Workers=16 Thruput=0.0/s AvgLat=6734.2ms
+[01:07:48] [INFO ] METRICS | Queued=118 Running=16 Done=59 Timeout=10 Workers=16 Thruput=4.0/s AvgLat=6823.7ms
+[01:07:49] [INFO ] METRICS | Queued=113 Running=16 Done=61 Timeout=10 Workers=16 Thruput=2.0/s AvgLat=7005.2ms
+[01:07:50] [INFO ] METRICS | Queued=113 Running=16 Done=61 Timeout=10 Workers=16 Thruput=0.0/s AvgLat=7005.2ms
+[01:07:51] [INFO ] METRICS | Queued=111 Running=16 Done=65 Timeout=10 Workers=16 Thruput=4.0/s AvgLat=7766.4ms
+[01:07:52] [INFO ] METRICS | Queued=108 Running=16 Done=67 Timeout=11 Workers=16 Thruput=2.0/s AvgLat=8176.9ms
+[01:07:53] [INFO ] METRICS | Queued=105 Running=16 Done=69 Timeout=11 Workers=16 Thruput=2.0/s AvgLat=8529.5ms
+[01:07:54] [INFO ] METRICS | Queued=102 Running=16 Done=72 Timeout=11 Workers=16 Thruput=3.0/s AvgLat=9069.5ms
+[01:07:55] [INFO ] METRICS | Queued=101 Running=16 Done=72 Timeout=11 Workers=16 Thruput=0.0/s AvgLat=9069.5ms
+[01:07:56] [INFO ] METRICS | Queued=98 Running=16 Done=73 Timeout=13 Workers=16 Thruput=1.0/s AvgLat=9316.4ms
+[01:07:57] [INFO ] METRICS | Queued=96 Running=16 Done=74 Timeout=14 Workers=16 Thruput=1.0/s AvgLat=9607.1ms
+[01:07:58] [INFO ] METRICS | Queued=95 Running=16 Done=78 Timeout=14 Workers=16 Thruput=4.0/s AvgLat=10103.9ms
+[01:07:59] [INFO ] METRICS | Queued=91 Running=16 Done=79 Timeout=15 Workers=16 Thruput=1.0/s AvgLat=10241.6ms
+[01:08:00] [INFO ] METRICS | Queued=90 Running=16 Done=80 Timeout=15 Workers=16 Thruput=1.0/s AvgLat=10563.8ms
+[01:08:01] [INFO ] METRICS | Queued=87 Running=16 Done=84 Timeout=16 Workers=16 Thruput=4.0/s AvgLat=11559.1ms
+[01:08:02] [INFO ] METRICS | Queued=83 Running=16 Done=85 Timeout=17 Workers=16 Thruput=1.0/s AvgLat=11875.5ms
+[01:08:03] [INFO ] METRICS | Queued=80 Running=16 Done=86 Timeout=18 Workers=16 Thruput=1.0/s AvgLat=12201.9ms
+[01:08:04] [INFO ] METRICS | Queued=79 Running=16 Done=88 Timeout=18 Workers=16 Thruput=2.0/s AvgLat=12565.1ms
+[01:08:05] [INFO ] METRICS | Queued=76 Running=16 Done=92 Timeout=18 Workers=16 Thruput=4.0/s AvgLat=13405.5ms
+[01:08:06] [INFO ] METRICS | Queued=73 Running=16 Done=93 Timeout=18 Workers=16 Thruput=1.0/s AvgLat=13688.1ms
+[01:08:07] [INFO ] METRICS | Queued=72 Running=16 Done=96 Timeout=18 Workers=16 Thruput=3.0/s AvgLat=14609.2ms
+[01:08:08] [INFO ] METRICS | Queued=69 Running=16 Done=99 Timeout=18 Workers=16 Thruput=3.0/s AvgLat=15363.6ms
+[01:08:09] [INFO ] METRICS | Queued=66 Running=16 Done=100 Timeout=18 Workers=16 Thruput=1.0/s AvgLat=15661.1ms
+[01:08:10] [INFO ] METRICS | Queued=65 Running=16 Done=102 Timeout=18 Workers=16 Thruput=2.0/s AvgLat=16573.6ms
+[01:08:11] [INFO ] METRICS | Queued=62 Running=16 Done=105 Timeout=18 Workers=16 Thruput=3.0/s AvgLat=17514.8ms
+[01:08:12] [INFO ] METRICS | Queued=60 Running=16 Done=107 Timeout=18 Workers=16 Thruput=2.0/s AvgLat=18313.8ms
+[01:08:13] [INFO ] METRICS | Queued=59 Running=16 Done=108 Timeout=18 Workers=16 Thruput=1.0/s AvgLat=18744.1ms
+[01:08:14] [INFO ] METRICS | Queued=56 Running=16 Done=109 Timeout=19 Workers=16 Thruput=1.0/s AvgLat=19139.5ms
+[01:08:15] [INFO ] METRICS | Queued=55 Running=16 Done=110 Timeout=20 Workers=16 Thruput=1.0/s AvgLat=19634.9ms
+[01:08:16] [INFO ] METRICS | Queued=54 Running=16 Done=113 Timeout=20 Workers=16 Thruput=3.0/s AvgLat=20914.9ms
+[01:08:17] [INFO ] METRICS | Queued=50 Running=16 Done=115 Timeout=20 Workers=16 Thruput=2.0/s AvgLat=21756.5ms
+[01:08:18] [INFO ] METRICS | Queued=48 Running=16 Done=116 Timeout=21 Workers=16 Thruput=1.0/s AvgLat=22110.2ms
+[01:08:19] [INFO ] METRICS | Queued=46 Running=16 Done=117 Timeout=22 Workers=16 Thruput=1.0/s AvgLat=22485.9ms
+[01:08:20] [INFO ] METRICS | Queued=43 Running=16 Done=120 Timeout=24 Workers=16 Thruput=3.0/s AvgLat=24006.9ms
+[01:08:21] [INFO ] METRICS | Queued=40 Running=16 Done=121 Timeout=24 Workers=16 Thruput=1.0/s AvgLat=24357.4ms
+[01:08:22] [INFO ] METRICS | Queued=37 Running=16 Done=123 Timeout=25 Workers=16 Thruput=2.0/s AvgLat=25288.6ms
+[01:08:23] [INFO ] METRICS | Queued=35 Running=16 Done=125 Timeout=25 Workers=16 Thruput=2.0/s AvgLat=26259.2ms
+[01:08:24] [INFO ] METRICS | Queued=34 Running=16 Done=127 Timeout=25 Workers=16 Thruput=2.0/s AvgLat=27145.7ms
+[01:08:25] [INFO ] METRICS | Queued=30 Running=16 Done=129 Timeout=25 Workers=16 Thruput=2.0/s AvgLat=28099.5ms
+[01:08:26] [INFO ] METRICS | Queued=29 Running=16 Done=133 Timeout=26 Workers=16 Thruput=4.0/s AvgLat=30089.6ms
+[01:08:27] [INFO ] METRICS | Queued=24 Running=16 Done=135 Timeout=26 Workers=16 Thruput=2.0/s AvgLat=31071.3ms
+[01:08:28] [INFO ] METRICS | Queued=21 Running=16 Done=138 Timeout=26 Workers=16 Thruput=3.0/s AvgLat=32609.6ms
+[01:08:29] [INFO ] METRICS | Queued=20 Running=16 Done=140 Timeout=27 Workers=16 Thruput=2.0/s AvgLat=33825.7ms
+[01:08:30] [INFO ] METRICS | Queued=15 Running=16 Done=143 Timeout=27 Workers=16 Thruput=3.0/s AvgLat=35363.2ms
+[01:08:31] [INFO ] METRICS | Queued=13 Running=16 Done=144 Timeout=27 Workers=16 Thruput=1.0/s AvgLat=35871.1ms
+[01:08:32] [INFO ] METRICS | Queued=12 Running=16 Done=145 Timeout=29 Workers=16 Thruput=1.0/s AvgLat=36398.3ms
+[01:08:33] [INFO ] METRICS | Queued=8 Running=16 Done=147 Timeout=29 Workers=16 Thruput=2.0/s AvgLat=37486.4ms
+[01:08:34] [INFO ] METRICS | Queued=6 Running=16 Done=148 Timeout=30 Workers=16 Thruput=1.0/s AvgLat=37958.8ms
+[01:08:35] [INFO ] METRICS | Queued=3 Running=16 Done=151 Timeout=30 Workers=16 Thruput=3.0/s AvgLat=39774.0ms
+[01:08:36] [INFO ] METRICS | Queued=0 Running=14 Done=156 Timeout=30 Workers=15 Thruput=5.0/s AvgLat=42483.7ms
+[01:08:37] [INFO ] METRICS | Queued=0 Running=12 Done=158 Timeout=30 Workers=13 Thruput=2.0/s AvgLat=43649.4ms
+[01:08:38] [INFO ] METRICS | Queued=0 Running=9 Done=161 Timeout=30 Workers=11 Thruput=3.0/s AvgLat=45531.2ms
+[01:08:39] [INFO ] METRICS | Queued=0 Running=5 Done=165 Timeout=30 Workers=9 Thruput=4.0/s AvgLat=47657.4ms
+[01:08:40] [INFO ] METRICS | Queued=0 Running=3 Done=167 Timeout=30 Workers=7 Thruput=2.0/s AvgLat=48533.3ms
+[01:08:41] [INFO ] METRICS | Queued=0 Running=3 Done=167 Timeout=30 Workers=5 Thruput=0.0/s AvgLat=48533.3ms
+[01:08:42] [INFO ] METRICS | Queued=0 Running=1 Done=169 Timeout=30 Workers=3 Thruput=2.0/s AvgLat=49553.5ms
+[01:08:43] [INFO ] METRICS | Queued=0 Running=0 Done=170 Timeout=30 Workers=2 Thruput=1.0/s AvgLat=50103.0ms
+[01:08:44] [INFO ] METRICS | Queued=0 Running=0 Done=170 Timeout=30 Workers=2 Thruput=0.0/s AvgLat=50103.0ms
+[01:08:45] [INFO ] METRICS | Queued=0 Running=0 Done=170 Timeout=30 Workers=2 Thruput=0.0/s AvgLat=50103.0ms
+[01:08:46] [INFO ] METRICS | Queued=0 Running=0 Done=170 Timeout=30 Workers=2 Thruput=0.0/s AvgLat=50103.0ms
+[01:08:47] [INFO ] METRICS | Queued=0 Running=0 Done=170 Timeout=30 Workers=2 Thruput=0.0/s AvgLat=50103.0ms
+[01:08:48] [INFO ] METRICS | Queued=0 Running=0 Done=170 Timeout=30 Workers=2 Thruput=0.0/s AvgLat=50103.0ms
+[01:08:49] [INFO ] METRICS | Queued=0 Running=0 Done=170 Timeout=30 Workers=2 Thruput=0.0/s AvgLat=50103.0ms
+[01:08:50] [INFO ] METRICS | Queued=0 Running=0 Done=170 Timeout=30 Workers=2 Thruput=0.0/s AvgLat=50103.0ms
+[01:08:51] [INFO ] METRICS | Queued=0 Running=0 Done=170 Timeout=30 Workers=2 Thruput=0.0/s AvgLat=50103.0ms
+[01:08:52] [INFO ] METRICS | Queued=0 Running=0 Done=170 Timeout=30 Workers=2 Thruput=0.0/s AvgLat=50103.0ms
+[01:08:53] [INFO ] METRICS | Queued=0 Running=0 Done=170 Timeout=30 Workers=2 Thruput=0.0/s AvgLat=50103.0ms
+[01:08:54] [INFO ] Graceful shutdown complete
