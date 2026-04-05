@@ -1,4 +1,4 @@
-# Cloud Task Orchestration Engine
+# Cloud Orchestration Task Engine
 
 > A production-grade multithreaded task scheduler simulation in C++17 with a real-time Raylib GUI dashboard — inspired by Kubernetes and cloud container orchestration systems.
 
