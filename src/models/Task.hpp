@@ -11,6 +11,7 @@ struct Task {
     int                                         priority;
     std::chrono::milliseconds                   timeout;
     std::function<void()>                       work;
+    int                                         duration_ms; // New
     std::shared_ptr<std::atomic<bool>>          cancel_flag;
     std::atomic<TaskState>                      state;
     std::chrono::steady_clock::time_point       submit_time;
@@ -21,6 +22,7 @@ struct Task {
          int priority,
          std::chrono::milliseconds timeout,
          std::function<void()> work,
+         int duration_ms,
          std::shared_ptr<std::atomic<bool>> cancel_flag);
 
     Task(const Task&)            = delete;

@@ -8,10 +8,11 @@ TaskService::TaskService(TaskScheduler& scheduler, Logger& logger)
 
 uint64_t TaskService::submit(int                       priority,
                              std::chrono::milliseconds timeout,
-                             std::function<void()>     work) {
+                             std::function<void()>     work,
+                             int                       duration_ms) {
     uint64_t id      = next_id_++;
     auto     cancel  = std::make_shared<std::atomic<bool>>(false);
-    auto     task    = std::make_shared<Task>(id, priority, timeout, std::move(work), cancel);
+    auto     task    = std::make_shared<Task>(id, priority, timeout, std::move(work), duration_ms, cancel);
 
     std::ostringstream msg;
     msg << "Task #" << id << " submitted  priority=" << priority

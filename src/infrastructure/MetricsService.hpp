@@ -14,7 +14,8 @@ public:
     void adjustRunning(int delta);
     void setQueueSize(uint64_t size);
     void setWorkerCount(int count);
-    void recordEvent(uint64_t id, int priority, const std::string& state);
+    void setPaused(bool paused);
+    void recordEvent(uint64_t id, int priority, const std::string& state, int duration_ms = 0);
 
     MetricsSnapshot snapshot() const;
 
@@ -25,6 +26,7 @@ private:
     std::atomic<int>      running_count_{0};
     std::atomic<uint64_t> queue_size_{0};
     std::atomic<int>      worker_count_{0};
+    std::atomic<bool>     is_paused_{false};
 
     mutable std::mutex    data_mutex_;
     mutable std::deque<double>                              recent_latencies_;
@@ -33,5 +35,5 @@ private:
 
     static constexpr size_t MAX_LATENCY_SAMPLES  = 100;
     static constexpr int    THROUGHPUT_WINDOW_SEC = 1;
-    static constexpr size_t MAX_EVENT_LOG        = 10;
+    static constexpr size_t MAX_EVENT_LOG        = 50;
 };

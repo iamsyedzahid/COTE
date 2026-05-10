@@ -13,7 +13,8 @@ public:
 
     uint64_t submit(int                       priority,
                     std::chrono::milliseconds timeout,
-                    std::function<void()>     work);
+                    std::function<void()>     work,
+                    int                       duration_ms = 0);
 
     size_t pendingCount() const;
 

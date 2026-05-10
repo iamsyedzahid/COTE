@@ -31,9 +31,13 @@ void MetricsService::setWorkerCount(int count) {
     worker_count_ = count;
 }
 
-void MetricsService::recordEvent(uint64_t id, int priority, const std::string& state) {
+void MetricsService::setPaused(bool paused) {
+    is_paused_ = paused;
+}
+
+void MetricsService::recordEvent(uint64_t id, int priority, const std::string& state, int duration_ms) {
     std::lock_guard<std::mutex> lock(data_mutex_);
-    event_log_.push_back({id, priority, state});
+    event_log_.push_back({id, priority, state, duration_ms});
     if (event_log_.size() > MAX_EVENT_LOG)
         event_log_.pop_front();
 }
@@ -46,6 +50,7 @@ MetricsSnapshot MetricsService::snapshot() const {
     snap.running         = static_cast<uint64_t>(std::max(0, running_count_.load()));
     snap.queued          = queue_size_.load();
     snap.worker_count    = worker_count_.load();
+    snap.is_paused       = is_paused_.load();
 
     std::lock_guard<std::mutex> lock(data_mutex_);
 

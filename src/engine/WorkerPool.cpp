@@ -70,6 +70,11 @@ void WorkerPool::workerLoop() {
     metrics_.setWorkerCount(active_count_.load());
 
     while (running_.load()) {
+        if (paused_.load()) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            continue;
+        }
+
         if (active_count_.load() > target_count_.load()) break;
 
         std::shared_ptr<Task> task;

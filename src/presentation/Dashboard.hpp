@@ -27,7 +27,7 @@ private:
     void drawStatsPanel(const MetricsSnapshot& snap, float top) const;
     void drawFooter() const;
 
-    static void drawCard(Rectangle bounds,
+    static void drawCard(Font font, Rectangle bounds,
                          const char* title,
                          uint64_t    value,
                          Color       accent);
@@ -35,6 +35,8 @@ private:
     MetricsService& metrics_;
     int             width_;
     int             height_;
+    Font            font_;
+    uint64_t        selected_task_id_{0};
 
     GraphBuffer throughput_history_;
     GraphBuffer latency_history_;

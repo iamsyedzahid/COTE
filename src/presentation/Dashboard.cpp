@@ -3,18 +3,20 @@
 #include <iomanip>
 #include <algorithm>
 #include <cmath>
+#include <fstream>
+#include <iostream>
 
-static const Color BG_DARK      = { 13,  17,  23,  255 };
-static const Color BG_CARD      = { 22,  27,  34,  255 };
-static const Color BG_PANEL     = { 30,  35,  42,  255 };
-static const Color ACCENT_BLUE  = { 56,  139, 253, 255 };
-static const Color ACCENT_GREEN = { 63,  185, 80,  255 };
-static const Color ACCENT_RED   = { 248, 81,  73,  255 };
-static const Color ACCENT_AMBER = { 210, 153, 34,  255 };
-static const Color ACCENT_VIOLET= { 188, 140, 255, 255 };
-static const Color TEXT_PRIMARY = { 230, 237, 243, 255 };
-static const Color TEXT_DIM     = { 125, 133, 144, 255 };
-static const Color BORDER_COLOR = { 48,  54,  61,  255 };
+// Modern Premium Palette
+static constexpr Color BG_DARK      = { 20, 20, 26, 255 };    // Deep Charcoal
+static constexpr Color CARD_BG     = { 30, 30, 38, 200 };    // Translucent Gray
+static constexpr Color CARD_BORDER = { 50, 50, 65, 255 };    // Subtle Border
+static constexpr Color TEXT_MAIN   = { 220, 220, 235, 255 }; // Soft White
+static constexpr Color TEXT_DIM    = { 120, 120, 150, 255 }; // Muted Blue-Gray
+
+static constexpr Color ACCENT_CYAN  = { 0, 225, 255, 255 };  // Electric Cyan
+static constexpr Color ACCENT_GOLD  = { 255, 200, 50, 255 };  // Muted Gold
+static constexpr Color ACCENT_BERRY = { 255, 60, 120, 255 };  // Vivid Berry
+static constexpr Color ACCENT_LIME  = { 150, 255, 50, 255 };  // Soft Lime
 
 Dashboard::Dashboard(MetricsService& metrics, int width, int height)
     : metrics_(metrics)
@@ -27,9 +29,30 @@ Dashboard::Dashboard(MetricsService& metrics, int width, int height)
     SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_MSAA_4X_HINT);
     InitWindow(width_, height_, "Cloud Task Orchestration Engine");
     SetTargetFPS(30);
+
+    // Bulletproof Font Loading: Check if file exists and is valid size before loading
+    bool fontLoaded = false;
+    std::ifstream f("resources/font.ttf", std::ios::binary | std::ios::ate);
+    if (f.is_open()) {
+        long size = f.tellg();
+        if (size > 10240) { // Must be at least 10KB to be a real font
+            font_ = LoadFontEx("resources/font.ttf", 64, nullptr, 0);
+            if (font_.texture.id != 0) {
+                SetTextureFilter(font_.texture, TEXTURE_FILTER_BILINEAR);
+                fontLoaded = true;
+            }
+        }
+        f.close();
+    }
+
+    if (!fontLoaded) {
+        std::cout << "[INFO] Using default system font." << std::endl;
+        font_ = GetFontDefault();
+    }
 }
 
 Dashboard::~Dashboard() {
+    UnloadFont(font_);
     CloseWindow();
 }
 
@@ -68,136 +91,179 @@ void Dashboard::render() {
     drawActivityStrip(snap);
 
     // Dynamic layout: graphs fill the middle, stats panel takes the rest
-    float graphTop = 295.0f;
-    float graphH   = std::max(100.0f, static_cast<float>(height_) - 28.0f - graphTop - 145.0f);
+    float graphTop = 335.0f;
+    float graphH   = std::max(100.0f, static_cast<float>(height_) - 28.0f - graphTop - 155.0f);
     float graphW   = (width_ - 60.0f) / 3.0f;
 
     {
         std::lock_guard<std::mutex> lg(throughput_history_.mutex);
         drawGraph(throughput_history_, "Throughput", "tasks/s",
-                  { 20.0f, graphTop, graphW, graphH }, ACCENT_GREEN);
+                  { 20.0f, graphTop, graphW, graphH }, ACCENT_LIME);
     }
     {
         std::lock_guard<std::mutex> lg(latency_history_.mutex);
         drawGraph(latency_history_, "Avg Latency", "ms",
-                  { 20.0f + graphW + 20.0f, graphTop, graphW, graphH }, ACCENT_AMBER);
+                  { 20.0f + graphW + 20.0f, graphTop, graphW, graphH }, ACCENT_GOLD);
     }
     {
         std::lock_guard<std::mutex> lg(queue_history_.mutex);
         drawGraph(queue_history_, "Queue Depth", "tasks",
-                  { 20.0f + 2.0f*(graphW + 20.0f), graphTop, graphW, graphH }, ACCENT_BLUE);
+                  { 20.0f + 2.0f*(graphW + 20.0f), graphTop, graphW, graphH }, ACCENT_CYAN);
     }
 
     float statsTop = graphTop + graphH + 10.0f;
     drawStatsPanel(snap, statsTop);
     drawFooter();
 
+    if (snap.is_paused) {
+        // Less opaque overlay (alpha 80 instead of 150)
+        DrawRectangle(0, 0, width_, height_, { 0, 0, 0, 80 });
+        
+        // Move to top-right to keep the center and activity strip clear
+        const char* msg = "SIMULATION PAUSED";
+        const char* sub = "Press SPACE to resume";
+        
+        float margin = 40.0f;
+        Vector2 sz1 = MeasureTextEx(font_, msg, 24, 2.0f);
+        Vector2 sz2 = MeasureTextEx(font_, sub, 14, 1.0f);
+        
+        float x = width_ - std::max(sz1.x, sz2.x) - margin;
+        float y = margin + 40.0f; // Below the header
+
+        DrawRectangleRounded({ x - 15, y - 10, std::max(sz1.x, sz2.x) + 30, sz1.y + sz2.y + 25 }, 0.2f, 8, { 20, 20, 20, 200 });
+        DrawRectangleRoundedLines({ x - 15, y - 10, std::max(sz1.x, sz2.x) + 30, sz1.y + sz2.y + 25 }, 0.2f, 8, 2.0f, ACCENT_GOLD);
+
+        DrawTextEx(font_, msg, { x, y }, 24, 2.0f, ACCENT_GOLD);
+        DrawTextEx(font_, sub, { x, y + 30 }, 14, 1.0f, TEXT_DIM);
+    }
+
     EndDrawing();
 }
 
 void Dashboard::drawHeader() const {
-    DrawRectangle(0, 0, width_, 52, BG_PANEL);
-    DrawLine(0, 52, width_, 52, BORDER_COLOR);
-    DrawText("Cloud Task Orchestration Engine", 20, 16, 22, TEXT_PRIMARY);
+    DrawRectangle(0, 0, width_, 52, CARD_BG);
+    DrawLine(0, 52, width_, 52, CARD_BORDER);
+    DrawTextEx(font_, "CLOUD TASK ORCHESTRATION ENGINE", { 20, 16 }, 22, 2.0f, TEXT_MAIN);
+    
+    // Fullscreen hint
+    DrawTextEx(font_, "F11: FULLSCREEN", { (float)width_ - 150, 18 }, 14, 1.0f, TEXT_DIM);
 }
 
 void Dashboard::drawTaskCountCards(const MetricsSnapshot& snap) const {
-    float cardW = (width_ - 100.0f) / 4.0f;
+    float totalSpacing = 100.0f; // total side and middle gaps
+    float cardW = (width_ - totalSpacing) / 4.0f;
     float top   = 68.0f;
     float h     = 100.0f;
 
-    drawCard({ 20.0f,                   top, cardW, h }, "QUEUED",    snap.queued,     ACCENT_BLUE);
-    drawCard({ 20.0f + (cardW+20.0f),   top, cardW, h }, "RUNNING",   snap.running,    ACCENT_AMBER);
-    drawCard({ 20.0f + 2*(cardW+20.0f), top, cardW, h }, "COMPLETED", snap.completed,  ACCENT_GREEN);
-    drawCard({ 20.0f + 3*(cardW+20.0f), top, cardW, h }, "TIMED OUT", snap.timed_out,  ACCENT_RED);
+    drawCard(font_, { 20.0f,                   top, cardW, h }, "QUEUED",    snap.queued,     ACCENT_CYAN);
+    drawCard(font_, { 20.0f + (cardW+20.0f),   top, cardW, h }, "RUNNING",   snap.running,    ACCENT_GOLD);
+    drawCard(font_, { 20.0f + 2*(cardW+20.0f), top, cardW, h }, "COMPLETED", snap.completed,  ACCENT_LIME);
+    drawCard(font_, { 20.0f + 3*(cardW+20.0f), top, cardW, h }, "TIMED OUT", snap.timed_out,  ACCENT_BERRY);
 }
 
-void Dashboard::drawCard(Rectangle b, const char* title, uint64_t value, Color accent) {
-    DrawRectangleRec(b, BG_CARD);
-    DrawRectangleLinesEx(b, 1.0f, BORDER_COLOR);
-    DrawRectangle(static_cast<int>(b.x), static_cast<int>(b.y),
-                  4, static_cast<int>(b.height), accent);
+void Dashboard::drawCard(Font font, Rectangle bounds, const char* title, uint64_t value, Color accent) {
+    // Glass Card Shadow/Border
+    DrawRectangleRounded(bounds, 0.15f, 8, CARD_BG);
+    DrawRectangleRoundedLines(bounds, 0.15f, 8, 2.0f, CARD_BORDER);
+    
+    // Accent Glow (Top line)
+    DrawRectangle(static_cast<int>(bounds.x) + 15, static_cast<int>(bounds.y), static_cast<int>(bounds.width) - 30, 3, accent);
 
-    DrawText(title, static_cast<int>(b.x) + 14, static_cast<int>(b.y) + 14, 12, TEXT_DIM);
-
-    std::string val = std::to_string(value);
-    int fw = MeasureText(val.c_str(), 36);
-    DrawText(val.c_str(),
-             static_cast<int>(b.x + b.width / 2.0f - fw / 2.0f),
-             static_cast<int>(b.y + b.height / 2.0f - 2.0f),
-             36, TEXT_PRIMARY);
+    // Title (Small, Dim, Uppercase)
+    char upperTitle[64];
+    size_t i = 0;
+    for (; title[i] != '\0' && i < 63; ++i) upperTitle[i] = (char)toupper(title[i]);
+    upperTitle[i] = '\0';
+    
+    DrawTextEx(font, upperTitle, { bounds.x + 20, bounds.y + 20 }, 14, 1.5f, TEXT_DIM);
+    
+    // Value (Large, Bright)
+    std::string valStr = std::to_string(value);
+    Vector2 valSize = MeasureTextEx(font, valStr.c_str(), 40, 1.0f);
+    DrawTextEx(font, valStr.c_str(), { bounds.x + (bounds.width - valSize.x) / 2, bounds.y + 45 }, 40, 1.0f, TEXT_MAIN);
 }
 
 void Dashboard::drawWorkerBar(const MetricsSnapshot& snap) const {
-    float top  = 188.0f;
+    float top  = 180.0f;
     float barW = static_cast<float>(width_) - 40.0f;
 
-    DrawRectangle(20, static_cast<int>(top), static_cast<int>(barW), 36, BG_CARD);
-    DrawRectangleLinesEx({ 20.0f, top, barW, 36.0f }, 1.0f, BORDER_COLOR);
+    DrawRectangle(20, static_cast<int>(top), static_cast<int>(barW), 36, CARD_BG);
+    DrawRectangleLinesEx({ 20.0f, top, barW, 36.0f }, 1.0f, CARD_BORDER);
 
-    std::ostringstream label;
-    label << "Workers: " << snap.worker_count
-          << "   Total Submitted: " << snap.total_submitted;
-    DrawText(label.str().c_str(), 28, static_cast<int>(top) + 11, 14, TEXT_PRIMARY);
+    std::string workerStr = "WORKERS: " + std::to_string(snap.worker_count) + "  |  TOTAL JOBS: " + std::to_string(snap.total_submitted);
+    DrawTextEx(font_, workerStr.c_str(), { 28, top + 10 }, 16, 1.0f, TEXT_DIM);
 
-    int blocks    = std::min(snap.worker_count, 48);
+    int maxVisibleBlocks = (int)(barW / 14.0f) - 10;
+    int blocks    = std::min(static_cast<int>(snap.worker_count), maxVisibleBlocks);
     int bx        = width_ - 20 - blocks * 14;
     for (int i = 0; i < blocks; ++i) {
-        Color col = (i < snap.running) ? ACCENT_AMBER : ACCENT_GREEN;
+        Color col = (static_cast<uint64_t>(i) < snap.running) ? ACCENT_GOLD : ACCENT_LIME;
         DrawRectangle(bx + i * 14, static_cast<int>(top) + 8, 10, 20, col);
     }
 }
 
 void Dashboard::drawActivityStrip(const MetricsSnapshot& snap) const {
-    float top  = 232.0f;
+    float top  = 245.0f;
     float h    = 54.0f;
     float barW = static_cast<float>(width_) - 40.0f;
 
-    DrawRectangle(20, static_cast<int>(top), static_cast<int>(barW), static_cast<int>(h), BG_CARD);
-    DrawRectangleLinesEx({ 20.0f, top, barW, h }, 1.0f, BORDER_COLOR);
-    DrawText("PRIORITY ACTIVITY", 30, static_cast<int>(top) + 6, 11, TEXT_DIM);
+    DrawTextEx(font_, "PRIORITY ACTIVITY", { 20, top - 22 }, 14, 2.0f, TEXT_DIM);
+    DrawRectangle(20, static_cast<int>(top), static_cast<int>(barW), static_cast<int>(h), CARD_BG);
+    DrawRectangleLinesEx({ 20.0f, top, barW, h }, 1.0f, CARD_BORDER);
 
     if (snap.recent_events.empty()) {
-        DrawText("Waiting for tasks...", 30, static_cast<int>(top) + 24, 13, TEXT_DIM);
+        DrawTextEx(font_, "Waiting for tasks...", { 30, top + 20 }, 13, 1.0f, TEXT_DIM);
         return;
     }
 
-    // Draw chips from left to right: newest events at right
+    // Deduplicate: only show the latest state for each unique task ID
+    std::vector<TaskEvent> unique_tasks;
+    for (auto it = snap.recent_events.rbegin(); it != snap.recent_events.rend(); ++it) {
+        bool exists = false;
+        for (const auto& ut : unique_tasks) {
+            if (ut.id == it->id) {
+                exists = true;
+                break;
+            }
+        }
+        if (!exists) unique_tasks.push_back(*it);
+        if (unique_tasks.size() >= 10) break; 
+    }
+    // Reverse again so they appear in chronological order (oldest on left)
+    std::reverse(unique_tasks.begin(), unique_tasks.end());
+
     float chipW  = 95.0f;
     float chipH  = 28.0f;
-    float chipY  = top + h / 2.0f - chipH / 2.0f + 3.0f;
+    float chipY  = top + h / 2.0f - chipH / 2.0f;
     float startX = 30.0f;
 
-    for (size_t i = 0; i < snap.recent_events.size(); ++i) {
-        const auto& ev  = snap.recent_events[i];
+    for (size_t i = 0; i < unique_tasks.size(); ++i) {
+        const auto& ev  = unique_tasks[i];
         float cx = startX + static_cast<float>(i) * (chipW + 6.0f);
 
-        // State color for chip border/left bar
-        Color stateCol = (ev.state == "QUEUED")  ? ACCENT_BLUE  :
-                         (ev.state == "RUNNING") ? ACCENT_AMBER :
-                         (ev.state == "DONE")    ? ACCENT_GREEN : ACCENT_RED;
+        Rectangle chipRec = { cx, chipY, chipW, chipH };
+        bool isHovered = CheckCollisionPointRec(GetMousePosition(), chipRec);
+        
+        if (isHovered && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            const_cast<Dashboard*>(this)->selected_task_id_ = ev.id;
+        }
 
-        // Priority badge color: 8-10 red, 5-7 amber, 1-4 blue
-        Color prioCol  = (ev.priority >= 8) ? ACCENT_RED   :
-                         (ev.priority >= 5) ? ACCENT_AMBER : ACCENT_BLUE;
+        Color stateCol = (ev.state == "QUEUED")  ? ACCENT_CYAN  :
+                         (ev.state == "RUNNING") ? ACCENT_GOLD :
+                         (ev.state == "DONE")    ? ACCENT_LIME : ACCENT_BERRY;
 
-        DrawRectangle(static_cast<int>(cx), static_cast<int>(chipY),
-                      static_cast<int>(chipW), static_cast<int>(chipH), BG_PANEL);
-        DrawRectangleLinesEx({ cx, chipY, chipW, chipH }, 1.0f, stateCol);
-        // Left priority bar
-        DrawRectangle(static_cast<int>(cx), static_cast<int>(chipY),
-                      3, static_cast<int>(chipH), prioCol);
+        DrawRectangleRounded(chipRec, 0.2f, 8, (selected_task_id_ == ev.id) ? CARD_BORDER : BG_DARK);
+        DrawRectangleRoundedLines(chipRec, 0.2f, 8, 2.0f, (isHovered || selected_task_id_ == ev.id) ? WHITE : stateCol);
+        
+        std::string pstr = "P:" + std::to_string(ev.priority) + " #" + std::to_string(ev.id);
+        DrawTextEx(font_, pstr.c_str(), { cx + 5, chipY + 4 }, 11, 1.0f, TEXT_MAIN);
+        DrawTextEx(font_, ev.state.c_str(), { cx + 5, chipY + 16 }, 10, 1.0f, stateCol);
 
-        // "P:9" badge
-        std::string pstr = "P:" + std::to_string(ev.priority);
-        DrawText(pstr.c_str(), static_cast<int>(cx) + 7, static_cast<int>(chipY) + 4, 11, prioCol);
-
-        // Task ID (truncated)
-        std::string idstr = "#" + std::to_string(ev.id);
-        DrawText(idstr.c_str(), static_cast<int>(cx) + 29, static_cast<int>(chipY) + 4, 11, TEXT_PRIMARY);
-
-        // State label
-        DrawText(ev.state.c_str(), static_cast<int>(cx) + 7, static_cast<int>(chipY) + 16, 10, stateCol);
+        if (selected_task_id_ == ev.id) {
+            char durBuf[32];
+            sprintf(durBuf, "DUR: %ds", ev.duration_ms / 1000);
+            DrawTextEx(font_, durBuf, { cx + 55, chipY + 16 }, 10, 1.0f, ACCENT_CYAN);
+        }
     }
 }
 
@@ -206,18 +272,11 @@ void Dashboard::drawGraph(const GraphBuffer& buf,
                           const char*        unit,
                           Rectangle          bounds,
                           Color              line_color) const {
-    DrawRectangleRec(bounds, BG_CARD);
-    DrawRectangleLinesEx(bounds, 1.0f, BORDER_COLOR);
-
-    std::string header = std::string(label) + " (" + unit + ")";
-    DrawText(header.c_str(), static_cast<int>(bounds.x) + 10, static_cast<int>(bounds.y) + 8, 13, TEXT_DIM);
+    DrawRectangleRec(bounds, CARD_BG);
+    DrawRectangleLinesEx(bounds, 1.0f, CARD_BORDER);
 
     const auto& data = buf.data();
-    if (data.size() < 2) {
-        EndDrawing();
-        BeginDrawing();
-        return;
-    }
+    if (data.size() < 2) return;
 
     float peak = buf.max();
     if (peak < 1.0f) peak = 1.0f;
@@ -240,73 +299,50 @@ void Dashboard::drawGraph(const GraphBuffer& buf,
         DrawLineEx({ x0, y0 }, { x1, y1 }, 1.8f, line_color);
     }
 
-    float last = data.back();
-    std::ostringstream val;
-    val << std::fixed << std::setprecision(1) << last;
-    DrawText(val.str().c_str(),
-             static_cast<int>(bounds.x + bounds.width - 50),
-             static_cast<int>(bounds.y + 8),
-             14, line_color);
-
-    DrawText("0", static_cast<int>(gx), static_cast<int>(gy + gh - 8), 10, TEXT_DIM);
-    std::string top_label = std::to_string(static_cast<int>(peak));
-    DrawText(top_label.c_str(), static_cast<int>(gx), static_cast<int>(gy), 10, TEXT_DIM);
+    DrawTextEx(font_, label, { bounds.x, bounds.y - 25 }, 16, 1.0f, TEXT_DIM);
+    
+    char valStr[32];
+    sprintf(valStr, "%.1f %s", data.back(), unit);
+    Vector2 valSize = MeasureTextEx(font_, valStr, 16, 1.0f);
+    DrawTextEx(font_, valStr, { bounds.x + bounds.width - valSize.x, bounds.y - 25 }, 16, 1.0f, line_color);
 }
 
 void Dashboard::drawStatsPanel(const MetricsSnapshot& snap, float top) const {
     float panW = static_cast<float>(width_) - 40.0f;
     float panH = static_cast<float>(height_) - top - 36.0f;
 
-    DrawRectangle(20, static_cast<int>(top), static_cast<int>(panW), static_cast<int>(panH), BG_CARD);
-    DrawRectangleLinesEx({ 20.0f, top, panW, panH }, 1.0f, BORDER_COLOR);
-    DrawText("Performance Statistics", 32, static_cast<int>(top) + 10, 14, TEXT_DIM);
-
-    std::ostringstream oss;
-    oss << std::fixed << std::setprecision(2);
-
-    float col1x = 40.0f;
-    float col2x = panW / 2.0f + 40.0f;
-    float row1y = top + 34.0f;
-    float row2y = top + 64.0f;
-    float row3y = top + 94.0f;
+    DrawRectangle(20, static_cast<int>(top), static_cast<int>(panW), static_cast<int>(panH), CARD_BG);
+    DrawRectangleLinesEx({ 20.0f, top, panW, panH }, 1.0f, CARD_BORDER);
+    DrawTextEx(font_, "PERFORMANCE STATISTICS", { 32, top + 10 }, 16, 2.0f, TEXT_DIM);
 
     auto drawStat = [&](float x, float y, const std::string& key, const std::string& val, Color vc) {
-        std::string full = key + val;
-        DrawText(key.c_str(), static_cast<int>(x), static_cast<int>(y), 15, TEXT_DIM);
-        DrawText(val.c_str(), static_cast<int>(x) + MeasureText(key.c_str(), 15),
-                 static_cast<int>(y), 15, vc);
+        DrawTextEx(font_, key.c_str(), { x, y }, 15, 1.0f, TEXT_DIM);
+        DrawTextEx(font_, val.c_str(), { x + MeasureTextEx(font_, key.c_str(), 15, 1.0f).x + 5, y }, 15, 1.0f, vc);
     };
 
-    oss.str(""); oss << snap.throughput_per_second << " tasks/sec";
-    drawStat(col1x, row1y, "Throughput:    ", oss.str(), ACCENT_GREEN);
+    char latencyBuf[32];
+    sprintf(latencyBuf, "%.1f ms", snap.average_latency_ms);
+    drawStat(40.0f, top + 40.0f, "Throughput:", std::to_string(snap.throughput_per_second) + " tasks/sec", ACCENT_LIME);
+    drawStat(40.0f, top + 70.0f, "Avg Latency:", latencyBuf, ACCENT_GOLD);
+    drawStat(40.0f, top + 100.0f, "Total Jobs:", std::to_string(snap.total_submitted), TEXT_MAIN);
 
-    oss.str(""); oss << snap.average_latency_ms << " ms";
-    drawStat(col1x, row2y, "Avg Latency:   ", oss.str(), ACCENT_AMBER);
-
-    oss.str(""); oss << snap.total_submitted;
-    drawStat(col1x, row3y, "Total Jobs:    ", oss.str(), TEXT_PRIMARY);
-
-    oss.str(""); oss << snap.worker_count << " threads active";
-    drawStat(col2x, row1y, "Worker Pool:   ", oss.str(), ACCENT_VIOLET);
-
-    oss.str(""); oss << snap.timed_out;
-    drawStat(col2x, row2y, "Timed Out:     ", oss.str(), ACCENT_RED);
-
-    uint64_t success_rate = (snap.total_submitted > 0)
-        ? (snap.completed * 100 / snap.total_submitted)
-        : 100;
-    oss.str(""); oss << success_rate << "%";
-    drawStat(col2x, row3y, "Success Rate:  ", oss.str(),
-             success_rate > 90 ? ACCENT_GREEN : ACCENT_RED);
+    uint64_t success_rate = (snap.total_submitted > 0) ? (snap.completed * 100 / snap.total_submitted) : 100;
+    char buf[64];
+    sprintf(buf, "Success Rate: %d%%", (int)success_rate);
+    
+    // Position success rate on the right side of the stats panel
+    float srX = width_ - MeasureTextEx(font_, buf, 15, 1.0f).x - 40.0f;
+    DrawTextEx(font_, buf, { srX, top + 40.0f }, 15, 1.0f, success_rate > 90 ? ACCENT_LIME : ACCENT_BERRY);
 }
 
 void Dashboard::drawFooter() const {
     int fy = height_ - 28;
-    DrawRectangle(0, fy, width_, 28, BG_PANEL);
-    DrawLine(0, fy, width_, fy, BORDER_COLOR);
-    DrawText("ESC to quit   |   Priority Scheduling  |  Dynamic Scaling  |  Timeout Enforcement  |  Live Metrics",
-             20, fy + 7, 12, TEXT_DIM);
-    int fps = GetFPS();
-    std::string fpsLabel = "FPS: " + std::to_string(fps);
-    DrawText(fpsLabel.c_str(), width_ - MeasureText(fpsLabel.c_str(), 12) - 20, fy + 7, 12, TEXT_DIM);
+    DrawRectangle(0, fy, width_, 28, BG_DARK);
+    DrawLine(0, fy, width_, fy, CARD_BORDER);
+    DrawTextEx(font_, "SPACE: PAUSE  |  B: BURST (25)  |  T: SINGLE TASK  |  F11: FULLSCREEN  |  ESC: QUIT",
+             { 20, (float)fy + 7 }, 12, 1.0f, TEXT_MAIN);
+    
+    char fpsBuf[16];
+    sprintf(fpsBuf, "FPS: %d", GetFPS());
+    DrawTextEx(font_, fpsBuf, { (float)width_ - 60, (float)fy + 7 }, 12, 1.0f, TEXT_DIM);
 }

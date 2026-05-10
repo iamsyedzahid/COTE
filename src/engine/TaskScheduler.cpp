@@ -10,7 +10,7 @@ TaskScheduler::TaskScheduler(std::shared_ptr<TaskQueue>  queue,
 
 void TaskScheduler::submit(std::shared_ptr<Task> task) {
     metrics_.recordSubmission();
-    metrics_.recordEvent(task->id, task->priority, "QUEUED");
+    metrics_.recordEvent(task->id, task->priority, "QUEUED", task->duration_ms);
     queue_->push(std::move(task));
     metrics_.setQueueSize(queue_->size());
 }

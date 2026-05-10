@@ -6,7 +6,8 @@
 struct TaskEvent {
     uint64_t    id;
     int         priority;
-    std::string state;   // "QUEUED" | "RUNNING" | "DONE" | "TIMEOUT"
+    std::string state;       // "QUEUED" | "RUNNING" | "DONE" | "TIMEOUT"
+    int         duration_ms; // New: expected/actual duration
 };
 
 struct MetricsSnapshot {
@@ -18,6 +19,7 @@ struct MetricsSnapshot {
     double   throughput_per_second;
     double   average_latency_ms;
     int      worker_count;
+    bool     is_paused; // New: track pause state
 
     std::vector<TaskEvent> recent_events;  // last 10 task state changes
 };

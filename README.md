@@ -105,6 +105,7 @@ chmod +x build.sh
 ```powershell
 git clone <your-repo-url>
 cd CloudTaskOrchestrator
+
 .\build.bat
 .\build\Release\orchestrator.exe
 ```
@@ -115,6 +116,14 @@ cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --parallel
 ./build/orchestrator
 ```
+#### **OR**
+**```bash**
+
+# 1. Rebuild (fast since it's just a few files)
+cmake --build build --parallel
+
+# 2. Run
+./build/orchestrator.exe
 
 ---
 
