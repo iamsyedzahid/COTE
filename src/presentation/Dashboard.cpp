@@ -252,11 +252,22 @@ void Dashboard::drawActivityStrip(const MetricsSnapshot& snap) const {
                          (ev.state == "RUNNING") ? ACCENT_GOLD :
                          (ev.state == "DONE")    ? ACCENT_LIME : ACCENT_BERRY;
 
+        bool isHighPrio = ev.priority >= 8;
+
         DrawRectangleRounded(chipRec, 0.2f, 8, (selected_task_id_ == ev.id) ? CARD_BORDER : BG_DARK);
-        DrawRectangleRoundedLines(chipRec, 0.2f, 8, 2.0f, (isHovered || selected_task_id_ == ev.id) ? WHITE : stateCol);
+        
+        // Use a thicker, glowing border for high-priority tasks
+        if (isHighPrio) {
+            DrawRectangleRoundedLines(chipRec, 0.2f, 8, 3.0f, (selected_task_id_ == ev.id) ? WHITE : ACCENT_GOLD);
+        } else {
+            DrawRectangleRoundedLines(chipRec, 0.2f, 8, 1.5f, (isHovered || selected_task_id_ == ev.id) ? WHITE : stateCol);
+        }
         
         std::string pstr = "P:" + std::to_string(ev.priority) + " #" + std::to_string(ev.id);
-        DrawTextEx(font_, pstr.c_str(), { cx + 5, chipY + 4 }, 11, 1.0f, TEXT_MAIN);
+        
+        // Highlight the "P:X" text for high priority tasks
+        Color pCol = isHighPrio ? ACCENT_BERRY : TEXT_MAIN;
+        DrawTextEx(font_, pstr.c_str(), { cx + 5, chipY + 4 }, 11, 1.0f, pCol);
         DrawTextEx(font_, ev.state.c_str(), { cx + 5, chipY + 16 }, 10, 1.0f, stateCol);
 
         if (selected_task_id_ == ev.id) {
