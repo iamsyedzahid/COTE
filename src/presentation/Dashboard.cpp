@@ -85,6 +85,7 @@ void Dashboard::render() {
     BeginDrawing();
     ClearBackground(BG_DARK);
 
+
     drawHeader();
     drawTaskCountCards(snap);
     drawWorkerBar(snap);
@@ -350,7 +351,7 @@ void Dashboard::drawFooter() const {
     int fy = height_ - 28;
     DrawRectangle(0, fy, width_, 28, BG_DARK);
     DrawLine(0, fy, width_, fy, CARD_BORDER);
-    DrawTextEx(font_, "SPACE: PAUSE  |  B: BURST (25)  |  T: SINGLE TASK  |  F11: FULLSCREEN  |  ESC: QUIT",
+    DrawTextEx(font_, "SPACE: PAUSE  |  B: BURST  |  T: HIGH-PRIO  |  N: NORMAL  |  E: TIMEOUT  |  F11: FULLSCREEN",
              { 20, (float)fy + 7 }, 12, 1.0f, TEXT_MAIN);
     
     char fpsBuf[16];

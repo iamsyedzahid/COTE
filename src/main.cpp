@@ -46,7 +46,7 @@ int main() {
     // Client simulation threads
     std::vector<std::thread> client_threads;
     const int CLIENT_COUNT     = 2;
-    const int TASKS_PER_CLIENT = 100;
+    const int TASKS_PER_CLIENT = 25;
 
     for (int c = 0; c < CLIENT_COUNT; ++c) {
         client_threads.emplace_back([&, c] {
@@ -66,8 +66,11 @@ int main() {
                 int  work_ms    = work_ms_dist(rng);
                 auto timeout_ms = std::chrono::milliseconds(timeout_ms_dist(rng));
 
-                task_service.submit(prio, timeout_ms, [work_ms] {
+                // Capture execution_slots by reference to control slots
+                task_service.submit(prio, timeout_ms, [work_ms, &execution_slots] {
+                    execution_slots.acquire(); // MUST acquire slot before working
                     std::this_thread::sleep_for(std::chrono::milliseconds(work_ms));
+                    execution_slots.release(); // Release slot when done
                 }, work_ms);
 
                 std::this_thread::sleep_for(std::chrono::milliseconds(gap_ms_dist(rng)));
@@ -92,8 +95,10 @@ int main() {
         if (IsKeyPressed(KEY_B)) {
             logger.log(LogLevel::INFO, "MANUAL BURST: Injecting 25 jobs (15s each)!");
             for (int i = 0; i < 25; ++i) {
-                task_service.submit(10, std::chrono::milliseconds(45000), [] {
+                task_service.submit(10, std::chrono::milliseconds(45000), [=, &execution_slots] {
+                    execution_slots.acquire();
                     std::this_thread::sleep_for(std::chrono::milliseconds(15000));
+                    execution_slots.release();
                 }, 15000);
             }
         }
@@ -101,8 +106,30 @@ int main() {
         // T: Single Task
         if (IsKeyPressed(KEY_T)) {
             logger.log(LogLevel::INFO, "MANUAL TASK: Injecting single high-priority job!");
-            task_service.submit(10, std::chrono::milliseconds(30000), [] {
+            task_service.submit(10, std::chrono::milliseconds(30000), [=, &execution_slots] {
+                execution_slots.acquire();
                 std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+                execution_slots.release();
+            }, 5000);
+        }
+
+        // E: Timeout Task (Guaranteed to fail)
+        if (IsKeyPressed(KEY_E)) {
+            logger.log(LogLevel::INFO, "TIMEOUT TEST: Injecting task that WILL timeout!");
+            task_service.submit(1, std::chrono::milliseconds(2000), [=, &execution_slots] {
+                execution_slots.acquire();
+                std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+                execution_slots.release();
+            }, 10000);
+        }
+
+        // N: Normal Task (Low Priority)
+        if (IsKeyPressed(KEY_N)) {
+            logger.log(LogLevel::INFO, "MANUAL TASK: Injecting low-priority job!");
+            task_service.submit(1, std::chrono::milliseconds(30000), [=, &execution_slots] {
+                execution_slots.acquire();
+                std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+                execution_slots.release();
             }, 5000);
         }
 
