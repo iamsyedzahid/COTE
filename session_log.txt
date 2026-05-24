@@ -1,0 +1,35 @@
+[22:29:06] [INFO ] System started — worker pool online
+[22:29:06] [INFO ] Task #2 submitted  priority=2  timeout=39136ms
+[22:29:06] [INFO ] Task #1 submitted  priority=4  timeout=44261ms
+[22:29:07] [INFO ] METRICS | Queued=0 Running=2 Done=0 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=0.0ms
+[22:29:08] [INFO ] METRICS | Queued=0 Running=2 Done=0 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=0.0ms
+[22:29:09] [INFO ] METRICS | Queued=0 Running=2 Done=0 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=0.0ms
+[22:29:10] [INFO ] METRICS | Queued=0 Running=2 Done=0 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=0.0ms
+[22:29:11] [INFO ] METRICS | Queued=0 Running=2 Done=0 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=0.0ms
+[22:29:12] [INFO ] METRICS | Queued=0 Running=2 Done=0 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=0.0ms
+[22:29:12] [INFO ] SIMULATION PAUSED
+[22:29:13] [INFO ] METRICS | Queued=0 Running=2 Done=0 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=0.0ms
+[22:29:14] [INFO ] METRICS | Queued=0 Running=2 Done=0 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=0.0ms
+[22:29:15] [INFO ] METRICS | Queued=0 Running=2 Done=0 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=0.0ms
+[22:29:16] [INFO ] METRICS | Queued=0 Running=1 Done=1 Timeout=0 Workers=2 Thruput=1.0/s AvgLat=9981.0ms
+[22:29:17] [INFO ] METRICS | Queued=0 Running=1 Done=1 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=9981.0ms
+[22:29:18] [INFO ] METRICS | Queued=0 Running=1 Done=1 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=9981.0ms
+[22:29:19] [INFO ] METRICS | Queued=0 Running=0 Done=2 Timeout=0 Workers=2 Thruput=1.0/s AvgLat=11478.5ms
+[22:29:20] [INFO ] METRICS | Queued=0 Running=0 Done=2 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=11478.5ms
+[22:29:21] [INFO ] METRICS | Queued=0 Running=0 Done=2 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=11478.5ms
+[22:29:22] [INFO ] METRICS | Queued=0 Running=0 Done=2 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=11478.5ms
+[22:29:23] [INFO ] METRICS | Queued=0 Running=0 Done=2 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=11478.5ms
+[22:29:24] [INFO ] METRICS | Queued=0 Running=0 Done=2 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=11478.5ms
+[22:29:25] [INFO ] METRICS | Queued=0 Running=0 Done=2 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=11478.5ms
+[22:29:26] [INFO ] METRICS | Queued=0 Running=0 Done=2 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=11478.5ms
+[22:29:27] [INFO ] METRICS | Queued=0 Running=0 Done=2 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=11478.5ms
+[22:29:28] [INFO ] METRICS | Queued=0 Running=0 Done=2 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=11478.5ms
+[22:29:29] [INFO ] METRICS | Queued=0 Running=0 Done=2 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=11478.5ms
+[22:29:30] [INFO ] METRICS | Queued=0 Running=0 Done=2 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=11478.5ms
+[22:29:31] [INFO ] METRICS | Queued=0 Running=0 Done=2 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=11478.5ms
+[22:29:32] [INFO ] METRICS | Queued=0 Running=0 Done=2 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=11478.5ms
+[22:29:33] [INFO ] METRICS | Queued=0 Running=0 Done=2 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=11478.5ms
+[22:29:34] [INFO ] METRICS | Queued=0 Running=0 Done=2 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=11478.5ms
+[22:29:35] [INFO ] METRICS | Queued=0 Running=0 Done=2 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=11478.5ms
+[22:29:36] [INFO ] METRICS | Queued=0 Running=0 Done=2 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=11478.5ms
+[22:29:37] [INFO ] METRICS | Queued=0 Running=0 Done=2 Timeout=0 Workers=2 Thruput=0.0/s AvgLat=11478.5ms
